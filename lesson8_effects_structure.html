@@ -1,0 +1,149 @@
+<html>
+<head>
+  <meta charset=utf-8>
+  <title>Lesson8  - Effects and structure</title>
+  <style type="text/css">
+   body {
+    width:600px;
+    margin: auto;
+    font-family: sans-serif;
+   }
+   
+   /*Close button on form*/
+   .close {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    font-weight: bold;
+    font-family: sans-serif;
+    cursor: pointer;
+   }
+    #contact {
+      background-color: #e3e3e3;
+      padding: 1em 2em;
+      position: relative;
+    }
+    
+    /*if javascript is enabled we gonna use these rules  */
+    .js #contact {
+      position: absolute;
+      top: 0;
+      width: inherit;
+      display: none;
+    }
+
+    #contact h2 {margin-top: 0;}
+    #contact ul {padding: 0;}
+    #contact li {
+      list-style: none;
+      margin-bottom: 1em;
+    }
+   /*Form inputs */
+
+   input, textarea {width: 100%; line-height: 2em;}
+   input[type=submit] {width: auto;}
+   label {display: block; text-align: left;}
+
+  </style>
+</head>
+<body>
+<article>
+  <h1>Some Post</h1>
+  <p>
+    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,
+  </p>
+
+  <p>
+     Lorem of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries.
+    Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,
+  </p>
+</article>
+
+<div id="contact">
+  <h2>Contact me</h2>
+  <form action="#">
+    <ul>
+      <li>
+        <label for="name">Name: </label>
+        <input name="name" id="name">
+      </li>
+
+      <li>
+        <label for="email">Email Address: </label>
+        <input name="email" id="email">
+      </li>
+
+      <li>
+        <label for="comments">What's up?</label>
+        <textarea name="comments" id="comments" cols="30" rows="10"></textarea>
+      </li>
+
+      <li>
+        <input type="submit" value="Submit">
+      </li>
+    </ul>
+  </form>
+</div>
+
+<script type="text/javascript" src="jquery-1.11.3.js"></script>
+<script type="text/javascript">
+
+(function() {
+  $('html').addClass('js'); //if html has a class of js then javascript is available (check in devTools)
+
+  var contactForm = {
+    // console.log(this); refers to object contactForm
+
+    container: $('#contact'),
+
+    config: {
+      effect: 'slideToggle',
+      speed: 500
+    },
+
+    init: function(config) {
+      $.extend(this.config, config); //extend default object by passing our config object, second arg - config will override our default one
+
+      $('<button></button>', { //create a button
+        text: 'Contact me'
+      })
+        .insertAfter('article:first')
+        .on('click', this.show); //on just created button we listen for the event click, if clicked we fire show method which is defined in our object (this.show) refers to our object contactForm
+    },
+
+    show: function() {
+      var cf = contactForm,
+        container = cf.container,
+        config = cf.config;
+
+      if (container.is(':hidden')) { //if container is not currently display (display: none)
+        cf.close.call(container); //refers to #contact
+        container[config.effect](config.speed);
+      }
+    },
+
+    close: function() {
+      //this  = #contact
+      var $this = $(this);
+
+      if ($this.find('span.close').length) return; //if span x already exist get out here, dont execute code underneath (dont create another span x)
+
+      $('<span class=close>X</span>')
+        .prependTo(this) //'this' refer to #contact
+        .on('click', function() {
+          //this  = span so we need to grab above this to be able to refer to #contact
+          $this[contactForm.config.effect](contactForm.config.speed);
+        })
+    }
+  };
+
+  contactForm.init({
+    effect: 'fadeToggle',
+    speed: 300
+  });
+
+})();
+
+</script>  
+</body>
+</html>

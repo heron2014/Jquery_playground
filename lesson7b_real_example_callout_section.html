@@ -1,0 +1,71 @@
+<html>
+<head>
+  <meta charset=utf-8>
+  <title>Lesson7a  - Moving elements around</title>
+  <style type="text/css">
+   article {
+    width:600px;
+    margin: auto;
+   }
+   blockquote.callout {
+    float: right;
+    background-color: #e3e3e3;
+    font-size: 2em;
+    width: 35%;
+    text-align: center;
+   }
+
+  </style>
+</head>
+<body>
+<article>
+  <h1>Some Post</h1>
+  <p>
+    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,
+  </p>
+
+  <p>
+    <span class="callout">Lorem Ipsum is simply dummy text </span> of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries.
+    Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,
+  </p>
+  <p>
+    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,
+  </p>
+  <p>
+    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text <span class="callout">Hello from Javascript </span> took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,
+  </p>
+  <p>
+    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,
+  </p>
+
+
+</article>
+
+
+<script type="text/javascript" src="jquery-1.11.3.js"></script>
+<script type="text/javascript">
+(function() {
+ 
+
+
+ var callout = $('span.callout').each(function() {
+  // $(this).closest('p').prepend('hi there'); we are not doing this way - just for presenttion
+
+  var $this = $(this);
+  //create a blockquote
+  $('<blockquote></blockquote', {
+    class: 'callout',
+    text: $this.text() //text is exactly what our span text is
+  }).prependTo($this.closest('p')); //prepedn to the closest p to span
+
+ });
+
+ //even better way is to grab article element and point span by using find method
+ // var callout = $('article').find('span.callout').each(function() {});
+
+})();
+
+
+</script>  
+</body>
+</html>

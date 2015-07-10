@@ -1,0 +1,57 @@
+<html>
+<head>
+  <meta charset=utf-8>
+  <title>Lesson7  - Creating and appending content to DOM</title>
+  <style type="text/css">
+   
+
+  </style>
+</head>
+<body>
+<article>
+  <h1>Some Post</h1>
+  <p>
+    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,
+  </p>
+
+  <p>
+    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,
+  </p>
+
+
+</article>
+
+
+<script type="text/javascript" src="jquery-1.11.3.js"></script>
+<script type="text/javascript">
+(function() {
+  //append some string 
+  $('article').append('this is my appended string'); //at the bottom of the article
+  $('article').prepend('this is my preppended string'); //at the top
+  $('h1').after('some text added via after method'); // text added after h1
+  $('p').first().before('text added before first p');
+
+
+  //create an h2 element 
+  $('<h2></h2>',{
+    text: 'This is my new h2 tag created in jquery',
+    class: 'myClass'
+  }).appendTo('article'); //or prepend
+
+  $('<h3></h3>',{
+    text: 'This is my new h3 tag created in jquery',
+    class: 'myClass'
+  }).insertAfter('h1');
+
+  $('<h4></h4>',{
+    text: 'This is my new h4 tag created in jquery',
+    class: 'myClass'
+  }).insertBefore('p:nth-child(3)');
+
+
+})();
+
+
+</script>  
+</body>
+</html>
