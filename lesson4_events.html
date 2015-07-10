@@ -28,7 +28,26 @@
     //this refers to target element but 'this' is javascript 
     //if you want to use 'this' in jquery , u need to wrapped it in $(this), then u can use any jquery methods
     console.log($(this)); 
-    $(this).text('changed by jquery');
+    //like that : below
+    // $(this).text('changed by jquery');
+    //tip below
+    //good practise , always cached query into variable
+    // if u want to grab ul and attach couple of method on it - first store it into variable
+    // var uls = $('ul');
+
+    //going back to our task
+    //we do hard coded first
+    // var href = $('link').attr('href');
+    //if u pass 1 arg to attr - u are returning the value 
+    //if u pass 2 arguments u are setting the value
+
+    //we want to set the value:
+    //that is sloooowwww plus it act on any buttons click
+    // $('link').attr('href', 'night.css');
+
+    // change the stylesheet depending on each button
+    var stylesheet = $(this).text().toLowerCase();
+    $('link').attr('href', stylesheet + '.css');
   });
 
 })();
