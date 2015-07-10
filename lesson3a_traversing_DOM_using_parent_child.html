@@ -1,0 +1,65 @@
+<html>
+<head>
+  <title>Lesson3 - DOM traversal method using Jquery</title>
+  <style type="text/css">
+    
+    .container {
+      color: red;
+    }
+    .emphasis {
+      color: green;
+    }
+
+    
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1>Welcome to my Website</h1>
+
+  <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
+
+  <div class="container">
+
+    <ul class="emphasis">
+      <li>Hello1</li>
+      <li>Hello2</li>
+      <li>Hello3</li>
+      <li>Hello4</li>
+      <li>
+        <ul>
+          <li>nested li (descendent)</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</div>
+<script type="text/javascript" src="jquery-1.11.3.js"></script>
+<script type="text/javascript">
+
+//get the parent of li element which is ul with a class emphasis
+// $('li').parent().removeClass('emphasis');
+//u can be more specific about the parent :
+// $('li').parent('ul').removeClass('emphasis');
+
+//remove class container from div container 
+
+// $('li').parent('.container').removeClass('container'); this will not work because container is not direct parent
+
+// $('li').parents('.container').removeClass('container'); this works 
+
+//to be more specific , to help perfomance 
+
+// $('li').parents('div.container').removeClass('container');
+
+//or another method to achive the same effect is closest
+
+$('li').closest('div.container').removeClass('container');
+
+console.log($('ul').parents('.container'));
+console.log($('ul').closest('.container'));
+
+//difference between closest and parents - closest always return the first found element but parents will go up to the very first parent element of this particular class that we looking for
+</script>  
+</body>
+</html>

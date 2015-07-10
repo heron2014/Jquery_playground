@@ -1,0 +1,79 @@
+<html>
+<head>
+  <title>Lesson3 - DOM traversal method using Jquery</title>
+  <style type="text/css">
+    li {
+      color: black;
+    }
+    .emphasis {
+      color: green;
+    }
+
+    ul.emphasis li {
+      /*this selects any li seated in ul, it doesnt have to be direct child */
+    }
+
+    ul.emphasis > li {
+      /*this is direct child of li, so any nested elements of ul.emphasis will not be selected*/
+      /*color: red;*/
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1>Welcome to my Website</h1>
+
+  <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
+
+  <ul class="emphasis">
+    <li>Hello1</li>
+    <li>Hello2</li>
+    <li>Hello3</li>
+    <li>Hello4</li>
+    <li>
+      <ul>
+        <li>nested li (descendent)</li>
+      </ul>
+    </li>
+  </ul>
+</div>
+<script type="text/javascript" src="jquery-1.11.3.js"></script>
+<script type="text/javascript">
+
+//children is looking for immiediete children of the parent
+  // $('ul.emphasis').children('li').css('color', 'green'); 
+
+//find menthod is looking for any li seated in ul with emphasis class , its like our ul.emhasis li --> in css
+// $('ul.emphasis').find('li').css('color', 'purple');
+  //if you want to select first li - u can use find method and css selectors(li:first-child) or (li:nth-child(1)) 
+// $('ul.emphasis').find('li:nth-child(1)').addClass('emphasis');
+
+  // but if you want to use only jquery method because it works in ie < 7 than css selectors
+  // use jquery helpers selectors --> this is not css selectors
+
+  // $('ul.emphasis').find('li:first').addClass('emphasis');
+  // or
+  // $('ul.emphasis').children('li:first').addClass('emphasis');
+
+  //or another way of doing it using only methods of jquery
+
+  $('ul.emphasis').children('li').first().addClass('emphasis');
+
+  //selecting second child of ul
+
+  $('ul.emphasis').children('li:nth-child(2)').text('added by jquery');
+
+  //eq(count from 0) its similar to li:nth-child, selects partcular element
+
+  $('ul.emphasis').children('li').eq(2).text('added via eq method using jquery');
+
+  //select direct follow li after fourth li 
+  $('ul.emphasis').children('li').eq(3).next().text('added via next method in jquery');
+
+  //u can also do all that using css selectors if u dont care about ie<7 or something like that
+  $('ul.emphasis li:nth-child(3)').text('added via jquery using css selectors'); 
+
+  $('ul.emphasis').children('li').eq(3).prev().text('added via prev method in jquery');
+</script>  
+</body>
+</html>
