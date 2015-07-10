@@ -1,0 +1,82 @@
+<html>
+<head>
+  <meta charset=utf-8>
+  <title>Lesson4c - Jquery events</title>
+  <style type="text/css">
+   body {
+    width: 500px;
+    margin: auto;
+    text-align: center;
+   }
+   dl {
+
+   }
+   dt {
+    cursor: pointer;
+    font-weight: bold;
+    line-height: 2em;
+    font-size: 1.5em;
+    background: rgba(211, 211, 211, 0.85);
+    border-bottom: 1px solid #c5c5c5;
+    border-top: 1px solid white;
+   }
+   dd {
+    margin: 0;
+    padding: 1em 0; 
+   } 
+    /*remove border-bottom on last child */
+
+    dt:nth-last-child(2) {border-bottom: none;}
+    /*this selector says: get the last child of ul which is dd and move up to second one whcih is our dt*/
+
+    .hide {
+      display: none;
+    }
+
+  </style>
+</head>
+<body>
+  <h1>Accordion effect</h1>
+
+<!-- dl is a definition list -->
+<!-- dt definition term -->
+<!-- dd definition detail -->
+  <dl>
+    <dt>What are your hours</dt>
+    <dd>We are open 24/7</dd>
+    <dt>What are your hours</dt>
+    <dd>We are open 24/7</dd>
+    <dt>What are your hours</dt>
+    <dd>We are open 24/7</dd>
+    <dt>What are your hours</dt>
+    <dd>We are open 24/7</dd>
+    <dt>What are your hours</dt>
+    <dd>We are open 24/7</dd>
+  </dl>
+
+
+
+<script type="text/javascript" src="jquery-1.11.3.js"></script>
+<script type="text/javascript">
+(function() {
+
+  var dd = $('dd');
+  //show first dd as default and hide the rest
+  //use filter method
+  // add class hide to every fourth element
+  dd.filter(':nth-child(n+4)').addClass('hide'); 
+
+  $('dt').on('mouseenter', function() { //this is not great as you apply mouseeneter event to potentially 100 questions , we need to use event delegation to attach event only to the parent
+    $(this)
+      .next() //refers to dd
+      .slideDown(200) //200 refers to ms
+      .siblings('dd')
+      .slideUp(200); //hide dd elements
+  });
+
+})();
+
+
+</script>  
+</body>
+</html>

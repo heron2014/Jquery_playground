@@ -1,0 +1,40 @@
+<html>
+<head>
+  <meta charset=utf-8>
+  <title>Lesson6  - Bind live delegate</title>
+  <style type="text/css">
+   
+
+  </style>
+</head>
+<body>
+  
+  <h2>Click me</h2>
+<div class="container">
+  <h3>Click me</h3>
+</div>
+
+<script type="text/javascript" src="jquery-1.11.3.js"></script>
+<script type="text/javascript">
+(function() {
+
+  $('h2').on('click', function() {
+    $(this).clone(true).appendTo('body'); // if u dont specify true in clone method or (if u pass false ) u will get clone of h2 but not with attached click method
+  })
+
+
+})();
+
+(function() {
+
+  $('div.container').delegate('h3','click', function() {// delegate is calling 'on' behind the scene, so start using on 
+    $(this).clone().appendTo('.container'); //important append to the same element as your parent 
+  })
+
+
+})()
+
+
+</script>  
+</body>
+</html>
