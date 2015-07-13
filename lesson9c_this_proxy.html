@@ -1,0 +1,29 @@
+<html>
+<head>
+  <meta charset=utf-8>
+  <title>Lesson9c  - this keyword using proxy Jquery method</title>
+  <style type="text/css">
+   
+
+  </style>
+</head>
+<body>
+<a href="http://www.google.com">Click me</a>
+<script type="text/javascript" src="jquery-1.11.3.js"></script>
+<script type="text/javascript">
+
+var obj2 = {
+
+	doit: function(e) {
+		e.preventDefault();
+		console.log('this is called from obj2', this);
+	}
+}
+
+//we want to refer to obj2 but this time we will use jquery method which is proxy
+//proxy(method, this) --> 'this' is whatever obj we want to refer to
+$('a').on('click', $.proxy(obj2.doit, obj2)); //because we refer to obj we need to define preventDefault in an obj doit method
+
+</script>  
+</body>
+</html>

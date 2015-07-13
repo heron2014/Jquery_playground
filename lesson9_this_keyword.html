@@ -1,0 +1,31 @@
+<html>
+<head>
+  <meta charset=utf-8>
+  <title>Lesson8  - this keyword</title>
+  <style type="text/css">
+   
+
+  </style>
+</head>
+<body>
+<a href="#">Click me</a>
+<script type="text/javascript" src="jquery-1.11.3.js"></script>
+<script type="text/javascript">
+console.log(this); //refers to window object
+
+// function dosomething() {
+  // console.log(this); 
+  //refers to window object
+// }
+// dosomething();
+
+function doSomething(e) {
+  e.preventDefault();
+  console.log('called from click event', this);
+}
+
+$('a').on('click', doSomething);
+
+</script>  
+</body>
+</html>

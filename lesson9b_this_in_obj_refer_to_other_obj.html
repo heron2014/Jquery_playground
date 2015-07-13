@@ -1,0 +1,31 @@
+<html>
+<head>
+  <meta charset=utf-8>
+  <title>Lesson9b  - this keyword, using call</title>
+  <style type="text/css">
+   
+
+  </style>
+</head>
+<body>
+<a href="http://www.google.com">Click me</a>
+<script type="text/javascript" src="jquery-1.11.3.js"></script>
+<script type="text/javascript">
+
+var obj2 = {
+
+	doit: function() {
+		console.log('this is called from obj2', this);
+	}
+}
+
+//we want to refer to 'a href' but call the method doit
+$('a').on('click', function(e) {
+	//'this' refers to 'a href' obj
+	obj2.doit.call(this);  //we can use apply method as well
+	e.preventDefault();
+}); 
+
+</script>  
+</body>
+</html>

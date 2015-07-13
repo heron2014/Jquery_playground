@@ -1,0 +1,40 @@
+<html>
+<head>
+  <meta charset=utf-8>
+  <title>Lesson8  - this keyword</title>
+  <style type="text/css">
+   
+
+  </style>
+</head>
+<body>
+<a href="http://www.google.com">Click me</a>
+<script type="text/javascript" src="jquery-1.11.3.js"></script>
+<script type="text/javascript">
+
+// var obj = {
+
+// 	doit: function(e) {
+// 		e.preventDefault();
+// 		console.log('this is called from obj', this);
+// 	}
+// }
+// $('a').on('click', obj.doit); this refers to 'a href' object
+
+var obj2 = {
+
+	doit: function() {
+		console.log('this is called from obj2', this);
+	}
+}
+
+//we want to refer to object not to 'a href'
+$('a').on('click', function(e) {
+	obj2.doit(); // because this time we refer to object , we can not pass like above in a object preventDefault because its irrelevant there
+	//thats why we need to preventDefault here
+	e.preventDefault();
+}); 
+
+</script>  
+</body>
+</html>
