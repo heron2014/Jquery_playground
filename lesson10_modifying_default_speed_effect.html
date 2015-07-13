@@ -1,0 +1,40 @@
+<html>
+<head>
+  <meta charset=utf-8>
+  <title>Lesson10  - effect, speed</title>
+  <style type="text/css">
+   
+
+  </style>
+</head>
+<body>
+<a href="http://www.google.com">Click me</a>
+
+<div class="content">
+	<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
+	<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
+</div>
+<script type="text/javascript" src="jquery-1.11.3.js"></script>
+<script type="text/javascript">
+//hide the content 
+//reveal the content on click event
+
+(function() {
+	$('div.content').hide();
+	console.log(jQuery.fx.speeds);
+	console.log($.fx.speeds); //both are the same object
+
+	//change the default value 
+	jQuery.fx.speeds._default = 2000; 
+	$('a').on('click', function(e) {
+		e.preventDefault();
+		$(this).next().slideDown('someWeirdClasss'); //'slow', 'fast' or number in ms
+		//if you pass some unreconisable value to slideDown it will grab the default value from Jquery.fx.speeds object
+		//like I did now, so it will slideDown within 2000ms
+});
+}());
+
+
+</script>  
+</body>
+</html>

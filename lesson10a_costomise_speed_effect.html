@@ -1,0 +1,36 @@
+<html>
+<head>
+  <meta charset=utf-8>
+  <title>Lesson10  - effect, speed</title>
+  <style type="text/css">
+   
+
+  </style>
+</head>
+<body>
+<a href="http://www.google.com">Click me</a>
+
+<div class="content">
+	<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
+	<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
+</div>
+<script type="text/javascript" src="jquery-1.11.3.js"></script>
+<script type="text/javascript">
+//hide the content 
+//reveal the content on click event
+
+(function() {
+	$('div.content').hide();
+	
+	//customise speed value 
+	jQuery.fx.speeds.anyNameYouWant = 1000; 
+	$('a').on('click', function(e) {
+		e.preventDefault();
+		$(this).next().slideToggle('anyNameYouWant'); 
+	});
+}());
+
+
+</script>  
+</body>
+</html>
