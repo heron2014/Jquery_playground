@@ -1,0 +1,57 @@
+<html>
+<head>
+  <meta charset=utf-8>
+  <title>Lesson11a - creating custom method - fadeSlideToggle</title>
+  <style type="text/css">
+   
+   body {width: 400px; margin: 100px auto;}
+
+   .box {
+   	width:400px;
+   	background-color: red;
+   	position: relative;
+   	overflow: hidden;
+   	/*padding: 1em;*/
+   }
+
+  </style>
+</head>
+<body>
+
+<h1>click me </h1>
+<div class="box">
+	<p>
+    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,
+  </p>
+</div>
+<p><button>FadeSlideToggle</button></p>
+<script type="text/javascript" src="jquery-1.11.3.js"></script>
+<script type="text/javascript">
+
+
+(function() {
+
+	var box = $('div.box');
+	
+
+	$.fn.fadeSlideToggle = function( speed, easing, callback ) {
+		console.log('my method');
+		//fadeToggle deals with opacity
+		//slideToggle deals with height
+		return $(this).animate({ //this refers to box.content  ALWAYS RETURN JQUERY OBJECT OTHERWISE YOU WON'T BE ABLE TO CHAIN METHODS
+			'height': 'toggle',
+			opacity: 'toggle'
+		}, speed || 1000, function() {
+			$.isFunction(callback) && callback.call(this);
+		});	 //if user dont pass speed value - we set default value to 1000, also we are checking if user pass callback function, if yes then we are checking if callback function is a function, if user didnt pass the callback,then our first operator is false so second operator is ignored 
+	};
+
+	$('button').on('click', function() {
+		box.fadeSlideToggle(2000);
+	});
+
+})();
+
+</script>  
+</body>
+</html>

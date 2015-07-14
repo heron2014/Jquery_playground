@@ -1,0 +1,52 @@
+<html>
+<head>
+  <meta charset=utf-8>
+  <title>Lesson10 - creating custom effect</title>
+  <style type="text/css">
+   /*to prevent margin clashing over p element*/
+   p {margin-top:0;}
+
+  </style>
+</head>
+<body>
+
+<h1>click me </h1>
+<div class="content">
+	<p>
+    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,
+  </p>
+
+  <p>
+    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,
+  </p>
+
+  <p>
+    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,
+  </p>
+</div>
+<script type="text/javascript" src="jquery-1.11.3.js"></script>
+<script type="text/javascript">
+
+
+(function() {
+
+	var content = $('div.content').hide();
+
+	jQuery.fn.flash = function( speed, easing, callback ) {
+		console.log('flash method');
+		$this = $(this);
+		return $this.slideDown(500, function() {//this refers to div.content   ALAWATS RETURN JQUERY OBJECT
+			$this.delay(1000).slideUp(1000);
+		}); 
+	// return this.animate( props, speed, easing, callback );
+	};
+	
+	$('h1').on('click', function() {
+		content.flash();
+	});
+	
+})();
+
+</script>  
+</body>
+</html>
